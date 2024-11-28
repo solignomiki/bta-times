@@ -4,10 +4,11 @@
     "package": "solignomiki.times.mixin",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
-      "SeasonMixin",
       "WorldTypeOverworldExtendedMixin"
     ],
     "client": [
+    ],
+    "server": [
     ],
     "injectors": {
         "defaultRequire": 1
