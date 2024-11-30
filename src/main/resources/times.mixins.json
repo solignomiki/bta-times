@@ -4,7 +4,8 @@
     "package": "solignomiki.times.mixin",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
-      "WorldTypeOverworldExtendedMixin"
+      "WorldTypeOverworldExtendedMixin",
+      "WorldMixin"
     ],
     "client": [
     ],
@@ -12,5 +13,5 @@
     ],
     "injectors": {
         "defaultRequire": 1
-  }
+    }
 }
