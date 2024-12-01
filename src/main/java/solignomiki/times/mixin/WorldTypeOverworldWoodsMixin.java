@@ -9,6 +9,7 @@ import net.minecraft.core.world.type.WorldTypeOverworld;
 import net.minecraft.core.world.type.WorldTypeOverworldWoods;
 import net.minecraft.core.world.weather.Weather;
 import net.minecraft.core.world.wind.WindManager;
+import net.minecraft.server.MinecraftServer;
 import org.lwjgl.Sys;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -27,6 +28,7 @@ public abstract class WorldTypeOverworldWoodsMixin extends WorldTypeOverworld {
 		at = @At(value = "INVOKE", target = "Lnet/minecraft/core/world/config/season/SeasonConfigBuilder;withSeasonInCycle(Lnet/minecraft/core/world/season/Season;I)Lnet/minecraft/core/world/config/season/SeasonConfigBuilder;")
 	)
 	private static SeasonConfigBuilder redirectSeasonCreation(SeasonConfigBuilder seasonConfigBuilder, Season season, int length) {
+
 		if (Times.CONFIG.getString("Mode").equalsIgnoreCase(Times.Mode.LENGTH.name())) {
 			return seasonConfigBuilder.withSeasonInCycle(season, Times.CONFIG.getInt("SeasonLength"));
 		} else if (Times.CONFIG.getString("Mode").equalsIgnoreCase(Times.Mode.REALTIME.name())) {
