@@ -33,21 +33,20 @@ public class Times implements ModInitializer, GameStartEntrypoint, RecipeEntrypo
 
     @Override
     public void onInitialize() {
-
 		LOGGER.info("Times initialized.");
     }
 
 	@Override
 	public void beforeGameStart() {
-
 	}
 
 	@Override
 	public void afterGameStart() {
 		if (MinecraftServer.getInstance() != null) {
 			WorldServer world = MinecraftServer.getInstance().getDimensionWorld(Dimension.overworld.id);
-			long allignedTime = SEASONS_CALCULATOR.getAllignedTime(world.getWorldTime());
-			world.setWorldTime(allignedTime);
+			world.setWorldTime(SEASONS_CALCULATOR.getAllignedTime(
+				world.getWorldTime()
+			));
 		}
 	}
 
@@ -58,7 +57,6 @@ public class Times implements ModInitializer, GameStartEntrypoint, RecipeEntrypo
 
 	@Override
 	public void initNamespaces() {
-
 	}
 
 	static {

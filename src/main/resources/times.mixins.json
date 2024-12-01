@@ -4,8 +4,13 @@
     "package": "solignomiki.times.mixin",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
+      "WorldTypeOverworldAmplifiedMixin",
+      "WorldTypeOverworldDefaultMixin",
       "WorldTypeOverworldExtendedMixin",
-      "WorldMixin"
+      "WorldTypeOverworldFloatingMixin",
+      "WorldTypeOverworldInlandMixin",
+      "WorldTypeOverworldIslandsMixin",
+      "WorldTypeOverworldWoodsMixin"
     ],
     "client": [
     ],
