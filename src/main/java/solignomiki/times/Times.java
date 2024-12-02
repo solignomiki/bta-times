@@ -63,8 +63,13 @@ public class Times implements ModInitializer, GameStartEntrypoint, RecipeEntrypo
 	static {
 		Toml toml = new Toml();
 		toml.addEntry("Mode", "Set it to LENGTH if you want to change amount of days in season. Set it to REALTIME if you want seasons to match real ones", "LENGTH");
-		toml.addEntry("SeasonLength","28");
+		toml.addEntry("SpringLength","28");
+		toml.addEntry("SummerLength","28");
+		toml.addEntry("FallLength","28");
+		toml.addEntry("WinterLength","28");
 		CONFIG = new TomlConfigHandler(MOD_ID, toml);
 		SEASONS_CALCULATOR = new SeasonsCalculator();
 	}
+	// FOR THE FUTURE
+
 }

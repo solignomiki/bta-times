@@ -38,16 +38,18 @@ public abstract class NetClientHandlerMixin {
 
 		SeasonConfig seasonConfig = SeasonConfig
 			.builder()
-			.withSeasonInCycle(Seasons.OVERWORLD_WINTER, packet.getWinterLength())
+			.withSeasonInCycle(Seasons.OVERWORLD_SPRING, packet.getSpringLength())
 			.withSeasonInCycle(Seasons.OVERWORLD_SUMMER, packet.getSummerLength())
+			.withSeasonInCycle(Seasons.OVERWORLD_FALL, packet.getFallLength())
+			.withSeasonInCycle(Seasons.OVERWORLD_WINTER, packet.getWinterLength())
 			.build();
 		((WorldType) this.worldClient.worldType).setDefaultSeasonConfig(seasonConfig);
 
-		System.out.println( ( (SeasonConfigCycle) this.mc.theWorld.worldType.getDefaultSeasonConfig()).getSeasons());
-		System.out.println(((SeasonConfigCycle) this.worldClient.worldType.getDefaultSeasonConfig()).getSeasons());
+//		System.out.println( ( (SeasonConfigCycle) this.mc.theWorld.worldType.getDefaultSeasonConfig()).getSeasons());
+//		System.out.println(((SeasonConfigCycle) this.worldClient.worldType.getDefaultSeasonConfig()).getSeasons());
 
 		((World) this.worldClient).setSeasonManager(SeasonManager.fromConfig(this.worldClient, this.worldClient.worldType.getDefaultSeasonConfig()));
 
-		System.out.println(this.worldClient.getSeasonManager().getSeasons());
+//		System.out.println(this.worldClient.getSeasonManager().getSeasons());
 	}
 }

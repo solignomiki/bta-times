@@ -6,9 +6,11 @@
     "mixins": [
       "Packet1LoginMixin",
       "WorldTypeMixin",
-      "WorldMixin",
+      "WorldMixin"
+    ],
+    "client": [
       "NetClientHandlerMixin",
-      "NetLoginHandlerMixin",
+      "WorldClientMixin",
       "WorldTypeOverworldAmplifiedMixin",
       "WorldTypeOverworldDefaultMixin",
       "WorldTypeOverworldExtendedMixin",
@@ -17,9 +19,8 @@
       "WorldTypeOverworldIslandsMixin",
       "WorldTypeOverworldWoodsMixin"
     ],
-    "client": [
-    ],
     "server": [
+      "NetLoginHandlerMixin"
     ],
     "injectors": {
         "defaultRequire": 1

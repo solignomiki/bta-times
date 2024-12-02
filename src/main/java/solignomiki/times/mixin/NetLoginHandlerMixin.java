@@ -42,13 +42,33 @@ public abstract class NetLoginHandlerMixin extends NetHandler {
 		at = @At(value = "INVOKE", target = "Lnet/minecraft/server/net/handler/NetServerHandler;sendPacket(Lnet/minecraft/core/net/packet/Packet;)V", ordinal = 0)
 	)
 	private void sendLoginPacket(NetServerHandler netserverhandler, Packet packet1login) {
-//		EntityPlayerMP entityplayermp = this.mcServer.playerList.getPlayerForLogin(this, packet1login.username);
-//		WorldServer worldserver = this.mcServer.getDimensionWorld(entityplayermp.dimension);
-		Packet1Login packet = new Packet1Login("", entityplayermp.id, worldserver.getRandomSeed(), (byte)worldserver.dimension.id, (byte) Registries.WORLD_TYPES.getNumericIdOfItem(worldserver.dimensionData.getWorldType()), NetworkManager.PACKET_DELAY, RSA.getPublicKey(RSA.RSAKeyChain.getPublic()));
-		((solignomiki.times.interfaces.Packet1Login) packet).setSpringLength(Times.SEASONS_CALCULATOR.springDays);
-		((solignomiki.times.interfaces.Packet1Login) packet).setSummerLength(Times.SEASONS_CALCULATOR.summerDays);
-		((solignomiki.times.interfaces.Packet1Login) packet).setFallLength(Times.SEASONS_CALCULATOR.fallDays);
-		((solignomiki.times.interfaces.Packet1Login) packet).setWinterLength(Times.SEASONS_CALCULATOR.winterDays);
-		netserverhandler.sendPacket(packet);
+		solignomiki.times.interfaces.Packet1Login packet = (solignomiki.times.interfaces.Packet1Login) new Packet1Login(
+			"",
+			entityplayermp.id,
+			worldserver.getRandomSeed(),
+			(byte)worldserver.dimension.id,
+			(byte) Registries.WORLD_TYPES.getNumericIdOfItem(worldserver.dimensionData.getWorldType()),
+			NetworkManager.PACKET_DELAY, RSA.getPublicKey(RSA.RSAKeyChain.getPublic())
+		);
+
+		if (Times.CONFIG.getString("Mode").equalsIgnoreCase(Times.Mode.LENGTH.name())) {
+			packet.setSpringLength(Times.CONFIG.getInt("SpringLength"));
+			packet.setSummerLength(Times.CONFIG.getInt("SummerLength"));
+			packet.setFallLength(Times.CONFIG.getInt("FallLength"));
+			packet.setWinterLength(Times.CONFIG.getInt("WinterLength"));
+		} else if (Times.CONFIG.getString("Mode").equalsIgnoreCase(Times.Mode.REALTIME.name())) {
+			packet.setSpringLength(Times.SEASONS_CALCULATOR.springDays);
+			packet.setSummerLength(Times.SEASONS_CALCULATOR.summerDays);
+			packet.setFallLength(Times.SEASONS_CALCULATOR.fallDays);
+			packet.setWinterLength(Times.SEASONS_CALCULATOR.winterDays);
+		} else {
+			Times.LOGGER.error("The mode specified in config is wrong. Season length will be standart");
+			packet.setSpringLength(14);
+			packet.setSummerLength(14);
+			packet.setFallLength(14);
+			packet.setWinterLength(14);
+		}
+
+		netserverhandler.sendPacket((Packet) packet);
 	}
 }
