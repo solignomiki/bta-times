@@ -46,10 +46,10 @@ public class SeasonsCalculator {
 		this.fallDays = this.realFallDays * minecraftDaysInRealDay;
 		this.winterDays = this.realWinterDays * minecraftDaysInRealDay;
 
-//		System.out.println("Весна: " + springDays + " дней");
-//		System.out.println("Лето: " + summerDays + " дней");
-//		System.out.println("Осень: " + fallDays + " дней");
-//		System.out.println("Зима: " + winterDays + " дней");
+		System.out.println("Весна: " + springDays + " дней");
+		System.out.println("Лето: " + summerDays + " дней");
+		System.out.println("Осень: " + fallDays + " дней");
+		System.out.println("Зима: " + winterDays + " дней");
 
 
 		this.daysInTheYear = Year.from(this.now).length();

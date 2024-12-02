@@ -33,6 +33,7 @@ public class Times implements ModInitializer, GameStartEntrypoint, RecipeEntrypo
 
     @Override
     public void onInitialize() {
+
 		LOGGER.info("Times initialized.");
     }
 

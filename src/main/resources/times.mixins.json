@@ -4,6 +4,11 @@
     "package": "solignomiki.times.mixin",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
+      "Packet1LoginMixin",
+      "WorldTypeMixin",
+      "WorldMixin",
+      "NetClientHandlerMixin",
+      "NetLoginHandlerMixin",
       "WorldTypeOverworldAmplifiedMixin",
       "WorldTypeOverworldDefaultMixin",
       "WorldTypeOverworldExtendedMixin",
