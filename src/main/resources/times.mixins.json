@@ -6,11 +6,7 @@
     "mixins": [
       "Packet1LoginMixin",
       "WorldTypeMixin",
-      "WorldMixin"
-    ],
-    "client": [
-      "NetClientHandlerMixin",
-      "WorldClientMixin",
+      "WorldMixin",
       "WorldTypeOverworldAmplifiedMixin",
       "WorldTypeOverworldDefaultMixin",
       "WorldTypeOverworldExtendedMixin",
@@ -18,6 +14,10 @@
       "WorldTypeOverworldInlandMixin",
       "WorldTypeOverworldIslandsMixin",
       "WorldTypeOverworldWoodsMixin"
+    ],
+    "client": [
+      "NetClientHandlerMixin",
+      "WorldClientMixin"
     ],
     "server": [
       "NetLoginHandlerMixin"
