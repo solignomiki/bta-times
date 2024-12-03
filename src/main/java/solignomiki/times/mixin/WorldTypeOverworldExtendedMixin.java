@@ -27,7 +27,6 @@ public abstract class WorldTypeOverworldExtendedMixin extends WorldTypeOverworld
 	@Redirect(
 		method = "<init>(Ljava/lang/String;)V",
 		remap = false,
-
 		at = @At(value = "INVOKE", target = "Lnet/minecraft/core/world/config/season/SeasonConfigBuilder;withSeasonInCycle(Lnet/minecraft/core/world/season/Season;I)Lnet/minecraft/core/world/config/season/SeasonConfigBuilder;")
 	)
 	private static SeasonConfigBuilder redirectSeasonCreation(SeasonConfigBuilder seasonConfigBuilder, Season season, int length) {

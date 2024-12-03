@@ -23,7 +23,6 @@ public abstract class WorldTypeOverworldDefaultMixin extends WorldTypeOverworld 
 	public WorldTypeOverworldDefaultMixin(String languageKey, Weather defaultWeather, WindManager windManager, SeasonConfig defaultSeasonConfig) {
 		super(languageKey, defaultWeather, windManager, defaultSeasonConfig);
 	}
-// TO BE UNLEASHED (possibly))
 
 	@Redirect(
 		method = "<init>(Ljava/lang/String;)V",

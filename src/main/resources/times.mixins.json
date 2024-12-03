@@ -4,7 +4,6 @@
     "package": "solignomiki.times.mixin",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
-      "Packet1LoginMixin",
       "WorldTypeMixin",
       "WorldMixin",
       "WorldTypeOverworldAmplifiedMixin",
@@ -16,8 +15,8 @@
       "WorldTypeOverworldWoodsMixin"
     ],
     "client": [
-      "NetClientHandlerMixin",
-      "WorldClientMixin"
+      "WorldClientMixin",
+      "NetClientHandlerMixin"
     ],
     "server": [
       "NetLoginHandlerMixin"

@@ -1,21 +1,16 @@
 package solignomiki.times;
 
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.world.Dimension;
-import net.minecraft.core.world.World;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.WorldServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import solignomiki.times.utils.SeasonsCalculator;
-import turniplabs.halplibe.util.ConfigHandler;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 import turniplabs.halplibe.util.RecipeEntrypoint;
 import turniplabs.halplibe.util.TomlConfigHandler;
 import turniplabs.halplibe.util.toml.Toml;
-
-import java.util.Properties;
 
 // Real-life day is 72 Minecraft days
 
@@ -30,10 +25,9 @@ public class Times implements ModInitializer, GameStartEntrypoint, RecipeEntrypo
 		REALTIME
 	}
 
-
     @Override
     public void onInitialize() {
-
+		//NetworkHelper.register(PacketSeasonsLength.class, false, true);
 		LOGGER.info("Times initialized.");
     }
 
@@ -70,6 +64,5 @@ public class Times implements ModInitializer, GameStartEntrypoint, RecipeEntrypo
 		CONFIG = new TomlConfigHandler(MOD_ID, toml);
 		SEASONS_CALCULATOR = new SeasonsCalculator();
 	}
-	// FOR THE FUTURE
 
 }
