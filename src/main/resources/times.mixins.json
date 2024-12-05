@@ -19,7 +19,8 @@
       "NetClientHandlerMixin"
     ],
     "server": [
-      "NetLoginHandlerMixin"
+      "NetLoginHandlerMixin",
+      "PlayerListMixin"
     ],
     "injectors": {
         "defaultRequire": 1
