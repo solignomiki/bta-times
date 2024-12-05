@@ -7,6 +7,7 @@ import net.minecraft.server.world.WorldServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import solignomiki.times.utils.SeasonsCalculator;
+import turniplabs.halplibe.HalpLibe;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 import turniplabs.halplibe.util.RecipeEntrypoint;
 import turniplabs.halplibe.util.TomlConfigHandler;
@@ -27,7 +28,6 @@ public class Times implements ModInitializer, GameStartEntrypoint, RecipeEntrypo
 
     @Override
     public void onInitialize() {
-		//NetworkHelper.register(PacketSeasonsLength.class, false, true);
 		LOGGER.info("Times initialized.");
     }
 
@@ -37,7 +37,7 @@ public class Times implements ModInitializer, GameStartEntrypoint, RecipeEntrypo
 
 	@Override
 	public void afterGameStart() {
-		if (MinecraftServer.getInstance() != null) {
+		if (!HalpLibe.isClient) {
 			WorldServer world = MinecraftServer.getInstance().getDimensionWorld(Dimension.overworld.id);
 			world.setWorldTime(SEASONS_CALCULATOR.getAllignedTime(
 				world.getWorldTime()
