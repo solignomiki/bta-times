@@ -31,8 +31,13 @@ public abstract class WorldServerMixin extends World {
 		)
 	)
 	private void setWorldTime(LevelData levelData, long time) {
-		if (!(Times.CONFIG.getString("Mode").equalsIgnoreCase(Times.Mode.REALTIME.name()))) {
+//		if (!(Times.CONFIG.getString("Mode").equalsIgnoreCase(Times.Mode.REALTIME.name()))) {
+//			levelData.setWorldTime(timePlusOneDay - timePlusOneDay % 24000L + (long)this.worldType.getSunriseTick(this) + 1000L);
+//		}
+		if (!Times.CONFIG.getBoolean("TurnOffSleep")) {
 			levelData.setWorldTime(time);
 		}
+
+		System.out.println(time);
 	}
 }
