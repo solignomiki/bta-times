@@ -1,13 +1,10 @@
 package solignomiki.times.mixin;
 
-import net.minecraft.client.Minecraft;
+
 import net.minecraft.core.net.packet.Packet;
-import net.minecraft.core.net.packet.Packet250CustomPayload;
-import net.minecraft.core.world.config.season.SeasonConfig;
-import net.minecraft.core.world.season.SeasonManager;
-import net.minecraft.core.world.season.Seasons;
-import net.minecraft.core.world.type.WorldTypeOverworld;
-import net.minecraft.server.entity.player.EntityPlayerMP;
+import net.minecraft.core.net.packet.PacketCustomPayload;
+import net.minecraft.core.util.helper.DyeColor;
+import net.minecraft.server.entity.player.PlayerServer;
 import net.minecraft.server.net.PlayerList;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,11 +20,12 @@ import java.io.*;
 public abstract class PlayerListMixin {
 
 	@Inject(
-		method = "sendPlayerToOtherDimension(Lnet/minecraft/server/entity/player/EntityPlayerMP;IZ)V",
+//		method = "sendPlayerToOtherDimension(Lnet/minecraft/server/entity/player/EntityPlayerMP;IZ)V",
+		method = "sendPlayerToOtherDimension(Lnet/minecraft/server/entity/player/PlayerServer;ILnet/minecraft/core/util/helper/DyeColor;Z)V",
 		remap = false,
 		at = @At(value = "TAIL")
 	)
-	public void sendPlayerToOtherDimension(EntityPlayerMP entityplayermp, int targetDim, boolean generatePortal, CallbackInfo ci) {
+	public void sendPlayerToOtherDimension(PlayerServer playerServer, int targetDim, DyeColor portalColor, boolean generatePortal, CallbackInfo ci) {
 		if (targetDim == 0) {
 			try {
 				ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -54,11 +52,10 @@ public abstract class PlayerListMixin {
 				dos.close();
 				byte[] data = bos.toByteArray();
 
-				entityplayermp.playerNetServerHandler.sendPacket((Packet) new Packet250CustomPayload("Times|SeasonsLength", data));
+				playerServer.playerNetServerHandler.sendPacket((Packet) new PacketCustomPayload("Times|SeasonsLength", data));
 			} catch (IOException exception) {
 				Times.LOGGER.error(exception.getMessage());
 			}
 		}
 	}
-
 }

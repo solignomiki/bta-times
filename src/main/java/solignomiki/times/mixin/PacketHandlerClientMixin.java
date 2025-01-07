@@ -1,16 +1,14 @@
 package solignomiki.times.mixin;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.net.handler.NetClientHandler;
-import net.minecraft.client.world.WorldClient;
-import net.minecraft.core.net.handler.NetHandler;
-import net.minecraft.core.net.packet.Packet1Login;
-import net.minecraft.core.net.packet.Packet250CustomPayload;
+import net.minecraft.client.net.handler.PacketHandlerClient;
+import net.minecraft.client.world.WorldClientMP;
+import net.minecraft.core.net.handler.PacketHandler;
+import net.minecraft.core.net.packet.PacketCustomPayload;
 import net.minecraft.core.world.config.season.SeasonConfig;
-import net.minecraft.core.world.config.season.SeasonConfigCycle;
 import net.minecraft.core.world.season.SeasonManager;
 import net.minecraft.core.world.season.Seasons;
-import net.minecraft.core.world.type.WorldTypeOverworld;
+import net.minecraft.core.world.type.overworld.WorldTypeOverworld;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,23 +21,23 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-@Mixin(value = NetClientHandler.class)
-public abstract class NetClientHandlerMixin extends NetHandler {
+@Mixin(value = PacketHandlerClient.class)
+public abstract class PacketHandlerClientMixin extends PacketHandler {
 	@Final
 	@Mutable
 	@Shadow
 	private Minecraft mc;
 
 	@Shadow
-	private WorldClient worldClient;
+	private WorldClientMP worldClientMP;
 
 	@Inject(
-		method = "handleCustomPayload(Lnet/minecraft/core/net/packet/Packet250CustomPayload;)V",
+		method = "handleCustomPayload(Lnet/minecraft/core/net/packet/PacketCustomPayload;)V",
 		remap = false,
 		at = @At("TAIL")
 	)
-	public void handleCustomPayload(Packet250CustomPayload packet, CallbackInfo ci) {
-		if (this.worldClient.worldType instanceof WorldTypeOverworld) {
+	public void handleCustomPayload(PacketCustomPayload packet, CallbackInfo ci) {
+		if (this.worldClientMP.worldType instanceof WorldTypeOverworld) {
 			int[] seasonsLengths = new int[4];
 			try {
 				ByteArrayInputStream bais = new ByteArrayInputStream(packet.data);
@@ -61,12 +59,12 @@ public abstract class NetClientHandlerMixin extends NetHandler {
 				.withSeasonInCycle(Seasons.OVERWORLD_FALL, seasonsLengths[2])
 				.withSeasonInCycle(Seasons.OVERWORLD_WINTER, seasonsLengths[3])
 				.build();
-			((WorldType) this.worldClient.worldType).setDefaultSeasonConfig(seasonConfig);
+			((WorldType) this.worldClientMP.worldType).setDefaultSeasonConfig(seasonConfig);
 
 	//		System.out.println(((SeasonConfigCycle) this.mc.theWorld.worldType.getDefaultSeasonConfig()).getSeasons());
 	//		System.out.println(((SeasonConfigCycle) this.worldClient.worldType.getDefaultSeasonConfig()).getSeasons());
 
-			((World) this.worldClient).setSeasonManager(SeasonManager.fromConfig(this.worldClient, this.worldClient.worldType.getDefaultSeasonConfig()));
+			((World) this.worldClientMP).setSeasonManager(SeasonManager.fromConfig(this.worldClientMP, this.worldClientMP.worldType.getSeasonConfig()));
 
 	//		System.out.println(this.worldClient.getSeasonManager().getSeasons());
 		}

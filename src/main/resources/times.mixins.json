@@ -6,20 +6,15 @@
     "mixins": [
       "WorldTypeMixin",
       "WorldMixin",
-      "WorldTypeOverworldAmplifiedMixin",
-      "WorldTypeOverworldDefaultMixin",
-      "WorldTypeOverworldExtendedMixin",
-      "WorldTypeOverworldFloatingMixin",
-      "WorldTypeOverworldInlandMixin",
-      "WorldTypeOverworldIslandsMixin",
-      "WorldTypeOverworldWoodsMixin"
+      "WorldServerMixin",
+      "WorldTypeOverworldMixin"
     ],
     "client": [
       "WorldClientMixin",
-      "NetClientHandlerMixin"
+      "PacketHandlerClientMixin"
     ],
     "server": [
-      "NetLoginHandlerMixin",
+      "PacketHandlerLoginMixin",
       "PlayerListMixin"
     ],
     "injectors": {

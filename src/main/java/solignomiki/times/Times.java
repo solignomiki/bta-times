@@ -21,7 +21,7 @@ public class Times implements ModInitializer, GameStartEntrypoint, RecipeEntrypo
 	public static final TomlConfigHandler CONFIG;
 	public static final SeasonsCalculator SEASONS_CALCULATOR;
 
-	public static enum Mode {
+	public enum Mode {
 		LENGTH,
 		REALTIME
 	}
@@ -38,7 +38,7 @@ public class Times implements ModInitializer, GameStartEntrypoint, RecipeEntrypo
 	@Override
 	public void afterGameStart() {
 		if (!HalpLibe.isClient) {
-			WorldServer world = MinecraftServer.getInstance().getDimensionWorld(Dimension.overworld.id);
+			WorldServer world = MinecraftServer.getInstance().getDimensionWorld(Dimension.OVERWORLD.id);
 			world.setWorldTime(SEASONS_CALCULATOR.getAllignedTime(
 				world.getWorldTime()
 			));
@@ -66,3 +66,10 @@ public class Times implements ModInitializer, GameStartEntrypoint, RecipeEntrypo
 	}
 
 }
+//      "WorldTypeOverworldAmplifiedMixin",
+//		  "WorldTypeOverworldDefaultMixin",
+//		  "WorldTypeOverworldMixin",
+//		  "WorldTypeOverworldFloatingMixin",
+//		  "WorldTypeOverworldInlandMixin",
+//		  "WorldTypeOverworldIslandsMixin",
+//		  "WorldTypeOverworldWoodsMixin"

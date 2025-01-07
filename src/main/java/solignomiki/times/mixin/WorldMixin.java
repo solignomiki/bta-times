@@ -9,8 +9,6 @@ import org.spongepowered.asm.mixin.*;
 
 @Mixin(value = World.class)
 public abstract class WorldMixin implements solignomiki.times.interfaces.World {
-	@Final
-	@Mutable
 	@Shadow
 	public SeasonManager seasonManager;
 

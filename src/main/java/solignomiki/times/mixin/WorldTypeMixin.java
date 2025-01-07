@@ -12,10 +12,10 @@ public abstract class WorldTypeMixin {
 	@Final
 	@Mutable
 	@Shadow
-	private SeasonConfig defaultSeasonConfig;
+	private SeasonConfig seasonConfig;
 
 	@Unique
 	public void setDefaultSeasonConfig(SeasonConfig seasonConfig) {
-		this.defaultSeasonConfig = seasonConfig;
+		this.seasonConfig = seasonConfig;
 	}
 }
