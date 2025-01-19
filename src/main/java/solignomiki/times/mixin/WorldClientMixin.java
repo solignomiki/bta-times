@@ -30,7 +30,7 @@ public abstract class WorldClientMixin extends net.minecraft.core.world.World im
 				.withSeasonInCycle(Seasons.OVERWORLD_FALL, 14)
 				.withSeasonInCycle(Seasons.OVERWORLD_WINTER, 14)
 				.build();
-			((WorldType) this.worldType).setDefaultSeasonConfig(seasonConfig);
+			((WorldType) this.worldType).setSeasonConfig(seasonConfig);
 
 	//		System.out.println( ( (SeasonConfigCycle) this.worldType.getDefaultSeasonConfig()).getSeasons());
 	//		System.out.println(((SeasonConfigCycle) this.worldType.getDefaultSeasonConfig()).getSeasons());

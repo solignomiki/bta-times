@@ -58,6 +58,7 @@ public class Times implements ModInitializer, GameStartEntrypoint, RecipeEntrypo
 		Toml toml = new Toml();
 		toml.addEntry("Mode", "Set it to LENGTH if you want to change amount of days in season. Set it to REALTIME if you want seasons to match real ones", "LENGTH");
 		toml.addEntry("TurnOffSleep", "false");
+		toml.addEntry("MinecraftDayLength", "Evaluates in minecraft ticks (20 ticks in second). Default is 24000", "24000");
 		toml.addEntry("SpringLength","28");
 		toml.addEntry("SummerLength","28");
 		toml.addEntry("FallLength","28");
@@ -67,10 +68,3 @@ public class Times implements ModInitializer, GameStartEntrypoint, RecipeEntrypo
 	}
 
 }
-//      "WorldTypeOverworldAmplifiedMixin",
-//		  "WorldTypeOverworldDefaultMixin",
-//		  "WorldTypeOverworldMixin",
-//		  "WorldTypeOverworldFloatingMixin",
-//		  "WorldTypeOverworldInlandMixin",
-//		  "WorldTypeOverworldIslandsMixin",
-//		  "WorldTypeOverworldWoodsMixin"

@@ -1,17 +1,21 @@
 package solignomiki.times.utils;
 
+import org.lwjgl.Sys;
+import solignomiki.times.Times;
+
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 
 public class SeasonsCalculator {
 	public static final int minecraftDaysInRealDay = 72;
-	public static final long minecraftDayLength = 24000;
 	public final int year;
 	public final long ticksInYear;
 	public final int daysInTheYear;
 	public final ZonedDateTime startOfYear;
 	public final long secondsSinceStartOfYear;
 	public final long ticksSinceStartOfYear;
+
+	public static long minecraftDayLength = 24000;
 
 	public long realYearsMinecraftWorldLasted;
 	public long alignedTime;
@@ -28,6 +32,8 @@ public class SeasonsCalculator {
 	private ZonedDateTime now;
 
 	public SeasonsCalculator() {
+		System.out.println("DAY: " + Times.CONFIG.getLong("MinecraftDayLength"));
+		minecraftDayLength = Times.CONFIG.getLong("MinecraftDayLength");
 		this.now = ZonedDateTime.now(ZoneId.systemDefault());
 		this.year = now.getYear();
 

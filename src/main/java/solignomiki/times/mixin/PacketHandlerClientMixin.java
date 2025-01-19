@@ -59,7 +59,7 @@ public abstract class PacketHandlerClientMixin extends PacketHandler {
 				.withSeasonInCycle(Seasons.OVERWORLD_FALL, seasonsLengths[2])
 				.withSeasonInCycle(Seasons.OVERWORLD_WINTER, seasonsLengths[3])
 				.build();
-			((WorldType) this.worldClientMP.worldType).setDefaultSeasonConfig(seasonConfig);
+			((WorldType) this.worldClientMP.worldType).setSeasonConfig(seasonConfig);
 
 	//		System.out.println(((SeasonConfigCycle) this.mc.theWorld.worldType.getDefaultSeasonConfig()).getSeasons());
 	//		System.out.println(((SeasonConfigCycle) this.worldClient.worldType.getDefaultSeasonConfig()).getSeasons());
