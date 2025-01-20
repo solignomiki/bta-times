@@ -15,22 +15,22 @@ public abstract class WorldTypeMixin {
 	@Shadow
 	private SeasonConfig seasonConfig;
 
-	@Final
-	@Mutable
-	@Shadow
-	private int dayNightCycleTicks;
+//	@Final
+//	@Mutable
+//	@Shadow
+//	private int dayNightCycleTicks;
 
 	@Unique
 	public void setSeasonConfig(SeasonConfig seasonConfig) {
 		this.seasonConfig = seasonConfig;
 	}
 
-	@Inject(
-		method = "<init>(Lnet/minecraft/core/world/type/WorldType$Properties;)V",
-		at = @At("TAIL")
-	)
-	public void modifyDayLength(WorldType.Properties properties, CallbackInfo ci) {
-		properties.dayNightCycleTicks(24000);
-		this.dayNightCycleTicks = 24000;
-	}
+//	@Inject(
+//		method = "<init>(Lnet/minecraft/core/world/type/WorldType$Properties;)V",
+//		at = @At("TAIL")
+//	)
+//	public void modifyDayLength(WorldType.Properties properties, CallbackInfo ci) {
+//		properties.dayNightCycleTicks(24000);
+//		this.dayNightCycleTicks = 24000;
+//	}
 }

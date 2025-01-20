@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import solignomiki.times.interfaces.World;
 import solignomiki.times.interfaces.WorldType;
+import solignomiki.times.utils.SeasonsConfig;
 
 @Mixin(value = WorldClientMP.class)
 public abstract class WorldClientMixin extends net.minecraft.core.world.World implements solignomiki.times.interfaces.World {
@@ -23,13 +24,7 @@ public abstract class WorldClientMixin extends net.minecraft.core.world.World im
 	)
 	public void sendQuittingDisconnectingPacket(CallbackInfo ci) {
 		if (this.worldType instanceof WorldTypeOverworld) {
-			SeasonConfig seasonConfig = SeasonConfig
-				.builder()
-				.withSeasonInCycle(Seasons.OVERWORLD_SPRING, 14)
-				.withSeasonInCycle(Seasons.OVERWORLD_SUMMER, 14)
-				.withSeasonInCycle(Seasons.OVERWORLD_FALL, 14)
-				.withSeasonInCycle(Seasons.OVERWORLD_WINTER, 14)
-				.build();
+			SeasonConfig seasonConfig = SeasonsConfig.forClient(new int[]{14, 14, 14, 14, 1});
 			((WorldType) this.worldType).setSeasonConfig(seasonConfig);
 
 	//		System.out.println( ( (SeasonConfigCycle) this.worldType.getDefaultSeasonConfig()).getSeasons());

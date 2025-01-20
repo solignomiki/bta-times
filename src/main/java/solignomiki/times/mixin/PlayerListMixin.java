@@ -13,6 +13,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import solignomiki.times.Times;
 import solignomiki.times.interfaces.World;
 import solignomiki.times.interfaces.WorldType;
+import solignomiki.times.utils.Config;
+import solignomiki.times.utils.SeasonsConfig;
 
 import java.io.*;
 
@@ -20,7 +22,6 @@ import java.io.*;
 public abstract class PlayerListMixin {
 
 	@Inject(
-//		method = "sendPlayerToOtherDimension(Lnet/minecraft/server/entity/player/EntityPlayerMP;IZ)V",
 		method = "sendPlayerToOtherDimension(Lnet/minecraft/server/entity/player/PlayerServer;ILnet/minecraft/core/util/helper/DyeColor;Z)V",
 		remap = false,
 		at = @At(value = "TAIL")
@@ -31,22 +32,29 @@ public abstract class PlayerListMixin {
 				ByteArrayOutputStream bos = new ByteArrayOutputStream();
 				DataOutputStream dos = new DataOutputStream(bos);
 
-				if (Times.CONFIG.getString("Mode").equalsIgnoreCase(Times.Mode.LENGTH.name())) {
-					dos.writeInt(Times.CONFIG.getInt("SpringLength"));
-					dos.writeInt(Times.CONFIG.getInt("SummerLength"));
-					dos.writeInt(Times.CONFIG.getInt("FallLength"));
-					dos.writeInt(Times.CONFIG.getInt("WinterLength"));
-				} else if (Times.CONFIG.getString("Mode").equalsIgnoreCase(Times.Mode.REALTIME.name())) {
+				if (Config.MODE.equalsIgnoreCase(Times.Mode.LENGTH.name())) {
+					dos.writeInt(Config.SPRING_LENGTH);
+					dos.writeInt(Config.SUMMER_LENGTH);
+					dos.writeInt(Config.FALL_LENGTH);
+					dos.writeInt(Config.WINTER_LENGTH);
+					dos.writeInt(1);
+				} else if (Config.MODE.equalsIgnoreCase(Times.Mode.REALTIME.name())) {
 					dos.writeInt(Times.SEASONS_CALCULATOR.springDays);
 					dos.writeInt(Times.SEASONS_CALCULATOR.summerDays);
 					dos.writeInt(Times.SEASONS_CALCULATOR.fallDays);
 					dos.writeInt(Times.SEASONS_CALCULATOR.winterDays);
+					dos.writeInt(
+						Config.HEMISPHERE
+							.equalsIgnoreCase(Times.Hemisphere.NORTHERN.name())
+							? 1 : 0
+					);
 				} else {
 					Times.LOGGER.error("The mode specified in config is wrong. Season length will be standart");
 					dos.writeInt(14);
 					dos.writeInt(14);
 					dos.writeInt(14);
 					dos.writeInt(14);
+					dos.writeInt(1);
 				}
 
 				dos.close();

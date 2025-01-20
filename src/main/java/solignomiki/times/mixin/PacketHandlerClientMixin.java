@@ -16,10 +16,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import solignomiki.times.Times;
 import solignomiki.times.interfaces.World;
 import solignomiki.times.interfaces.WorldType;
+import solignomiki.times.utils.SeasonsConfig;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 @Mixin(value = PacketHandlerClient.class)
 public abstract class PacketHandlerClientMixin extends PacketHandler {
@@ -38,27 +40,21 @@ public abstract class PacketHandlerClientMixin extends PacketHandler {
 	)
 	public void handleCustomPayload(PacketCustomPayload packet, CallbackInfo ci) {
 		if (this.worldClientMP.worldType instanceof WorldTypeOverworld) {
-			int[] seasonsLengths = new int[4];
+			int[] seasonsData = new int[5];
 			try {
 				ByteArrayInputStream bais = new ByteArrayInputStream(packet.data);
 
 				DataInputStream dis = new DataInputStream(bais);
 
-				for (int i = 0; i < 4; i++) {
-					seasonsLengths[i] = dis.readInt();
+				for (int i = 0; i < 5; i++) {
+					seasonsData[i] = dis.readInt();
 				}
 				dis.close();
 			} catch (IOException exception) {
 				Times.LOGGER.error(exception.getMessage());
 			}
 
-			SeasonConfig seasonConfig = SeasonConfig
-				.builder()
-				.withSeasonInCycle(Seasons.OVERWORLD_SPRING, seasonsLengths[0])
-				.withSeasonInCycle(Seasons.OVERWORLD_SUMMER, seasonsLengths[1])
-				.withSeasonInCycle(Seasons.OVERWORLD_FALL, seasonsLengths[2])
-				.withSeasonInCycle(Seasons.OVERWORLD_WINTER, seasonsLengths[3])
-				.build();
+			SeasonConfig seasonConfig = SeasonsConfig.forClient(seasonsData);
 			((WorldType) this.worldClientMP.worldType).setSeasonConfig(seasonConfig);
 
 	//		System.out.println(((SeasonConfigCycle) this.mc.theWorld.worldType.getDefaultSeasonConfig()).getSeasons());

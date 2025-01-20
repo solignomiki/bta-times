@@ -2,6 +2,7 @@ package solignomiki.times.utils;
 
 import org.lwjgl.Sys;
 import solignomiki.times.Times;
+import turniplabs.halplibe.HalpLibe;
 
 import java.time.*;
 import java.time.temporal.ChronoUnit;
@@ -32,8 +33,10 @@ public class SeasonsCalculator {
 	private ZonedDateTime now;
 
 	public SeasonsCalculator() {
-		System.out.println("DAY: " + Times.CONFIG.getLong("MinecraftDayLength"));
-		minecraftDayLength = Times.CONFIG.getLong("MinecraftDayLength");
+		if (!HalpLibe.isClient) {
+			//System.out.println("DAY: " + Times.CONFIG.getLong("MinecraftDayLength"));
+			minecraftDayLength = Times.CONFIG.getLong("MinecraftDayLength");
+		}
 		this.now = ZonedDateTime.now(ZoneId.systemDefault());
 		this.year = now.getYear();
 
