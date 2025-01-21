@@ -57,4 +57,4 @@ You can also create it by yourself
     - `FallLength` — Длина осени для режима `LENGTH`. Целое число
     - `WinterLength` — Длина зимы для режима `LENGTH`. Целое число
 - `[REALTIME]` - Настройки для режима `REALTIME`
-    - `Hemisphere` — Влияет на порядок сезонов. Для мест по южную сторону экватора будет верна опция `SOUTHERN`, а для тех что по северную, `NORTHERN`<br/>Can be `NORTHERN` or `SOUTHERN`. Default is `NORTHERN`
+    - `Hemisphere` — Влияет на порядок сезонов. Для мест по южную сторону экватора будет верна опция `SOUTHERN`, а для тех что по северную, `NORTHERN`<br/>Может быть `NORTHERN` или `SOUTHERN`. По умолчанию — `NORTHERN`
