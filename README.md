@@ -19,10 +19,14 @@ You can also create it by yourself
 - `Mode` — Mode in which mod will work<br /> Available options:
     - `LENGTH` — Changing length of each individual season
     - `REALTIME` — Seasons length will be calculated based on current real year. During start of the server it will set time to current real one
-- `SpringLength` — Length of a Spring for `LENGTH` mode. Integer
-- `SummerLength` — Length of a Summer for `LENGTH` mode. Integer
-- `FallLength` — Length of a Fall for `LENGTH` mode. Integer
-- `WinterLength` — Length of a Winter for `LENGTH` mode. Integer
+- `TurnOffSleep` — Option to turn off sleep. Can be either `true` or `false`. Default is `false`
+- `[LENGTH]` - Options for LENGTH mode
+    - `SpringLength` — Length of a Spring for `LENGTH` mode. Integer
+    - `SummerLength` — Length of a Summer for `LENGTH` mode. Integer
+    - `FallLength` — Length of a Fall for `LENGTH` mode. Integer
+    - `WinterLength` — Length of a Winter for `LENGTH` mode. Integer
+- `[REALTIME]` - Options for REALTIME mode
+    - `Hemisphere` — Affects order of seasons. For places southern side of Ecuator `SOUTHERN` will be true while for northern, `NORTHERN`.<br/>Can be `NORTHERN` or `SOUTHERN`. Default is `NORTHERN` 
 
 <br />
 
@@ -46,7 +50,11 @@ You can also create it by yourself
 - `Mode` — Режим в котором будет работать мод<br /> Возможные опции:
   - `LENGTH` — Изменение длины каждого конкретного сезона
   - `REALTIME` — Длина сезонов будет расчитываться исходя из текущего года. При старте сервера, установит время на текущее реальное
-- `SpringLength` — Длина весны для режима `LENGTH`. Целое число
-- `SummerLength` — Длина лета для режима `LENGTH`. Целое число
-- `FallLength` — Длина осени для режима `LENGTH`. Целое число
-- `WinterLength` — Длина зимы для режима `LENGTH`. Целое число
+- `TurnOffSleep` — Возможность выключить сон. Может быть или `true` или `false`. По умолчанию `false`
+- `[LENGTH]` - Настройки для режима `LENGTH`
+    - `SpringLength` — Длина весны для режима `LENGTH`. Целое число
+    - `SummerLength` — Длина лета для режима `LENGTH`. Целое число
+    - `FallLength` — Длина осени для режима `LENGTH`. Целое число
+    - `WinterLength` — Длина зимы для режима `LENGTH`. Целое число
+- `[REALTIME]` - Настройки для режима `REALTIME`
+    - `Hemisphere` — Влияет на порядок сезонов. Для мест по южную сторону экватора будет верна опция `SOUTHERN`, а для тех что по северную, `NORTHERN`<br/>Can be `NORTHERN` or `SOUTHERN`. Default is `NORTHERN`
